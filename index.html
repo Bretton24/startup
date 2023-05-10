@@ -15,8 +15,8 @@
         <!-- Menu is a semantic alternative to <ul> that represents an interaction -->
         <menu>
           <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
+          <li><a href="play.html">Find Game</a></li>
+          <li><a href="scores.html">Games Played</a></li>
           <li><a href="about.html">About</a></li>
         </menu>
       </nav>
@@ -27,17 +27,19 @@
 
     <main>
       <h1>Welcome</h1>
-      <p>Login to play</p>
+      <p>Login to find a local game</p>
       <form method="get" action="play.html">
-        <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Your name here" />
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Your username here" />
+        <label for="password">Password</label>
+        <input type="text" id="password" placeholder="Your password here" />
         <button type="submit">Login</button>
       </form>
     </main>
 
     <footer>
       <hr />
-      <span class="text-reset">Author Name(s)</span>
+      <span>Brett Ashcraft</span>
       <br />
       <a href="https://github.com/Bretton24/startup">GitHub</a>
     </footer>
