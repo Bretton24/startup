@@ -7,10 +7,13 @@
 Have you ever had a really hard time trying to find a group of people to play sports with? You never know when games are going on and you always end up playing with people who are either way above or below your skill level. What if there was a wesbite that showed you when and where games are taking place near you. You wouldn't have to wonder if people are as good as you or what sport you'll be playing, the app will tell you. 
 
 ### Design
+Here are diagrams of what the login page as well as the maps page look like.
+![Screenshot 2023-05-09 233025](https://github.com/Bretton24/startup/assets/103625821/8ad2d5e5-729a-4d0e-a714-b97f10194353)
+![Screenshot 2023-05-09 231016](https://github.com/Bretton24/startup/assets/103625821/c26c0348-1da1-484f-bedc-30b4da4a446b)
 
-![Map]()
 
 Here is a sequence diagram that shows how to people would interact with the backend to vote.
+
 
 ![Voting sequence diagram](votingSequenceDiagram.png)
 
