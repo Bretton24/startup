@@ -4,7 +4,7 @@
 
 ### Elevator pitch
 
-Have you ever had a really hard time trying to find a group of people to play sports with? You never know when games are going on and you always end up playing with people who are either way above or below your skill level. What if there was a wesbite that showed you when and where games are taking place near you. You wouldn't have to wonder if people are as good as you or what sport you'll be playing, the app will tell you. 
+Do you ever find it difficult to find people who share the same interest in sports that you do? This was the problem I faced when I came to college. So i developed an application that would allow you to connect with someone who shares your love of playing sports. This app allows you to create an account and then go to a map of your area to see who is playing a game and at what time. The benefit of this app is because there are so many users we can run ads and don't even have to charge the users to use the app. It's a win win for us and the users. 
 
 ### Design
 Here are diagrams of what the login page as well as the maps page look like.
@@ -12,16 +12,11 @@ Here are diagrams of what the login page as well as the maps page look like.
 ![Screenshot 2023-05-09 231016](https://github.com/Bretton24/startup/assets/103625821/c26c0348-1da1-484f-bedc-30b4da4a446b)
 
 
-Here is a sequence diagram that shows how to people would interact with the backend to vote.
-
-
-![Voting sequence diagram](votingSequenceDiagram.png)
-
 ### Key features
 
 - Secure login over HTTPS
 - Ability to add yourself to a game
-- Displays a map where games are taking place
+- Displays an interactive map where games are taking place
 - Totals from all users displayed in realtime
 - Displays player skill level at each game
 - Ability for user to create and delete games
