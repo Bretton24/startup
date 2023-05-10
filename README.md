@@ -8,7 +8,7 @@ Have you ever had a really hard time trying to find a group of people to play sp
 
 ### Design
 
-![Mock]()
+![Mock]("C:\Users\12082\Pictures\Screenshots\Screenshot 2023-05-09 231016.png")
 
 Here is a sequence diagram that shows how to people would interact with the backend to vote.
 
