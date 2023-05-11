@@ -41,10 +41,10 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I added the application structure.
 
-- **HTML pages** - Two HTML page that represent the ability to login and vote.
-- **Links** - The login page automatically links to the voter page. The voter page contains links for every voting choice.
+- **HTML pages** - Three HTML pages that represent the ability to login, add yourself to a local game on a map, and look at your friends and your record.
+- **Links** - The login page links to the findgame page. There are links to every html page within each page. 
 - **Text** - Each of the voting choices is represented by a textual description.
-- **Images** - I couldn't figure out how to include an image and so I didn't do this. 😔
+- **Images** - I added an image on the gamesplayed.html to spice up what the application looked like.
 - **Login** - Input box and submit button for login.
-- **Database** - The voting choices represent data pulled from the database.
-- **WebSocket** - The count of voting results represent the tally of realtime votes.
+- **Database** - The different games you can add yourself to represents data being pulled from a database.
+- **WebSocket** - The current players in a game represent real time information of who will be at the game. 
