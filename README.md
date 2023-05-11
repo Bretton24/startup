@@ -43,7 +43,7 @@ For this deliverable I added the application structure.
 
 - **HTML pages** - Three HTML pages that represent the ability to login, add yourself to a local game on a map, and look at your friends and your record.
 - **Links** - The login page links to the findgame page. There are links to every html page within each page. 
-- **Text** - Each of the voting choices is represented by a textual description.
+- **Text** - Each players information is represented by text.
 - **Images** - I added an image on the gamesplayed.html to spice up what the application looked like.
 - **Login** - Input box and submit button for login.
 - **Database** - The different games you can add yourself to represents data being pulled from a database.
