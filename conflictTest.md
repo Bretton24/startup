@@ -1,1 +1,2 @@
-Hey what is up
+Hey what is up.
+Nothing much, whats up with you?
