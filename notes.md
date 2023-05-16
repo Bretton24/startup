@@ -5,3 +5,7 @@ after I was committing and pushing with my startup project. I learned how to res
 https://github.com/Bretton24/startup/blob/main/README.md
 
 # Simon-CSS Deliverables
+### Footer
+I changed the footer a little bit because I didn't like how it was faded. I removed the bootstrap coloring and it went back to white.
+### Gamer Name
+I changed the color of the gamer because I felt like it seemed more seemless.
