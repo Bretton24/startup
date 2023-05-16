@@ -6,11 +6,3 @@ body{
     background-size: auto;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 2px -2px;
 }
-
-@media screen and (min-width: 1024px);
-#global-nav {
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.3);
-    height: 44px;
-    overflow: visible;
-    z-index: 1000040;
-}
