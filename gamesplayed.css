@@ -77,6 +77,9 @@ th{
     align-items: flex-start;
     justify-content: center;
   }
+  .highlightlink:hover{
+    font-weight: bold;
+  }
   .map{
     margin-left: 150px;
     margin-top: 80px;

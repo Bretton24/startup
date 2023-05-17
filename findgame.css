@@ -76,6 +76,10 @@ header {
   .map{
     margin-left: 150px;
     margin-top: 80px;
+    box-shadow: 0 0 20px 5px rgb(69, 69, 69);
+  }
+  .highlightlink:hover{
+    font-weight: bold;
   }
 
   @media (max-height: 600px) {

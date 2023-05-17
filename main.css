@@ -26,6 +26,9 @@ header {
   .font{
     color: black;
   }
+  .highlightlink:hover{
+    font-weight: bold;
+  }
 
   menu {
     flex: 1;
