@@ -26,6 +26,15 @@ header {
   .font{
     color: black;
   }
+  table{
+    background-color: #eee;
+  }
+  td, th {
+  color: black;
+  text-align: center;
+  border: black solid thin;
+  padding: .5em;
+}
 
   menu {
     flex: 1;
@@ -45,6 +54,16 @@ header {
   
   footer a {
     float: right;
+  }
+  .players{
+    flex: 1;
+    width: 100%;
+    padding: 0.5em;
+  }
+  img{
+    border-radius: 50%;
+    width: 10vw;
+    height: 10vw;
   }
   
   @media (max-height: 600px) {
