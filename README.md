@@ -48,3 +48,14 @@ For this deliverable I added the application structure.
 - **Login** - Input box and submit button for login.
 - **Database** - The different games you can add yourself to represents data being pulled from a database.
 - **WebSocket** - The current players in a game represent real time information of who will be at the game. 
+
+## CSS deliverable
+
+For this deliverable I properly styled the application into its final appearance.
+
+- **Header, footer, and main content body**
+- **Navigation elements** - I changed the color of the anchor elements and added the function of when you hover over they will bold
+- **Responsive to window resizing** - My app looks great on all window sizes and devices
+- **Application elements** - Used good contrast and whitespace
+- **Application text content** - Consistent fonts
+- **Application images** - I made a couple of images into circles to look more like a player profile picture.
