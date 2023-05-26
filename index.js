@@ -1,5 +1,5 @@
 function login() {
-  const nameEl = document.querySelector("#username");
-  localStorage.setItem("username", nameEl.value);
-  window.location.href = "findgame.html";
+  const username = "pizza";
+  localStorage.setItem("username", username);
+
 }
