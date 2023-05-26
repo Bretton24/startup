@@ -15,7 +15,7 @@ async function initMap() {
 
   // The map, centered at Provo
   map = new Map(document.getElementById("map"), {
-    zoom: 4,
+    zoom: 10,
     center: position,
     mapId: "DEMO_MAP_ID",
   });
@@ -24,8 +24,8 @@ async function initMap() {
   const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
-    title: "Uluru",
+    title: "Provo",
   });
 }
 
-  window.addEventListener("load", initMap);
+initMap();
