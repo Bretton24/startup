@@ -1,20 +1,36 @@
+
 // Initialize and add the map
 let map;
+let markers = [];
 
-async function initMap() {
-  // The location of provo
+function initMap() {
+  // The location of Provo
   const position = { lat: 40.233845, lng: -111.658531 };
-  // Request needed libraries.
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
 
-
-  // The map, centered at Uluru
-  map = new Map(document.getElementById("map"), {
+  // The map, centered at Provo
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: position,
     mapId: "DEMO_MAP_ID",
   });
+
+  map.addListener("click", (event) => {
+    const clickedPosition = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    };
+
+    createMarker(clickedPosition);
+  });
+}
+
+function createMarker(position) {
+  const marker = new google.maps.Marker({
+    position: position,
+    map: map,
+  });
+
+  markers.push(marker);
 }
 
 initMap();
