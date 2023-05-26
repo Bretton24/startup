@@ -76,15 +76,12 @@ header {
   .map{
     display: flex;
     width: 1500px; 
+    height: 80%;
     min-width: 250px;
     min-height: 75px;
     margin-left: 150px;
     margin-top: 70px;
     box-shadow: 0 0 20px 5px rgb(69, 69, 69);
-  }
-  #map{
-    height: 80%;
-    
   }
   .highlightlink:hover{
     font-weight: bold;
