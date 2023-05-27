@@ -66,5 +66,5 @@ For this deliverable I made my application functional to track and display a use
 
 - **login** - When you press login it takes you to the findgame.html page and then displays your username at the top.
 - **database** - Displays the different games that are going on on the map. This is currently saved in local storage but will later use a databse.
-- **WebSocket** - I used the setInterval function to periodically increase a random vote count. This will be replaced with WebSocket messages later.
-- **application logic** - The highlight and ranking number change based up the user's selections.
+- **WebSocket** - I used the map function that allows markers to be placed on the map to simulate the user creating a game.
+- **application logic** - when the user clicks on different games in the map it allows the user to add themselves to the game that they have clicked on. 
