@@ -183,6 +183,34 @@ class Game {
 
   }
 }
+function joinGame() {
+  if (currentGame) {
+    const storedUsername = localStorage.getItem("userName");
+    if (storedUsername) {
+      const isPlayerAdded = currentGame.players.some((player) => {
+        return player.name === storedUsername;
+      });
+      if (!isPlayerAdded) {
+        const player = new Player(
+          storedUsername,
+          generateRandomSkill(),
+          generateRandomWins(),
+          generateRandomLosses(),
+          generateRandomDate()
+        );
+        currentGame.addPlayer(player);
+        currentGame.printPlayersTable();
+      } else {
+        alert("You are already added to the game.");
+      }
+    } else {
+      alert("Please set your username before joining a game.");
+    }
+  } else {
+    alert("Please select a game before joining.");
+  }
+};
+
 // Initialize and add the map
 let map;
 let markers = [];
@@ -282,35 +310,8 @@ async function initMap() {
               currentGame = marker.game;
               currentGame.printPlayersTable();
             })
-
-            joinButton.addEventListener("click", function () {
-              if (currentGame) {
-                const storedUsername = localStorage.getItem("userName");
-                if (storedUsername) {
-                  const isPlayerAdded = currentGame.players.some((player) => {
-                    return player.name === storedUsername;
-                  });
             
-                  if (!isPlayerAdded) {
-                    const player = new Player(
-                      storedUsername,
-                      generateRandomSkill(),
-                      generateRandomWins(),
-                      generateRandomLosses(),
-                      generateRandomDate()
-                    );
-                    currentGame.addPlayer(player);
-                    currentGame.printPlayersTable();
-                  } else {
-                    alert("You are already added to the game.");
-                  }
-                } else {
-                  alert("Please set your username before joining a game.");
-                }
-              } else {
-                alert("Please select a game before joining.");
-              }
-            });
+         joinButton.addEventListener("click", joinGame);
 
             return results;
           })
