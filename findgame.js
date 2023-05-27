@@ -218,6 +218,7 @@ let geocoder;
 let responseDiv;
 let response;
 let currentGame;
+let games = [];
 
 markers = [];
 
@@ -296,7 +297,7 @@ async function initMap() {
               map,
             });
             const game = new Game();
-
+            games.push(game);
             for (let i = 0; i < getRandomNumber(3,10); i++) {
               const player = new Player(generateRandomName(), generateRandomSkill(), generateRandomWins(),generateRandomLosses(),generateRandomDate());
               game.addPlayer(player);
@@ -312,6 +313,8 @@ async function initMap() {
             })
             
          joinButton.addEventListener("click", joinGame);
+
+         localStorage.setItem("players", JSON.stringify(game.players));
 
             return results;
           })
