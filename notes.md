@@ -432,3 +432,168 @@ for (let i = 0; i < 3; i++) {
   This was provided with the introduction of the async/await syntax. The await keyword wraps the execution of a promise and removed the need to chain functions. The await expression will block until the promise state moves to fulfilled, or throws an exception if the state moves to rejected. For example, if we have a function that returns a coin toss promise.
   
   The async keyword declares that a function returns a promise. The await keyword wraps a call to the async function, blocks execution until the promise has resolved, and then returns the result of the promise.
+
+  
+  
+ ## Fetch:
+  fetch is basically the way to get others apis. 
+  
+  URL's are the location of a web resource such as websites, webpages, font, image, videos.
+  
+  URLS are broken down into each of these parts
+  Part	Example	Meaning
+Scheme	https	The protocol required to ask for the resource. For web applications, this is usually HTTPS. But it could be any internet protocol such as FTP or MAILTO.
+  
+Domain name	byu.edu	The domain name that owns the resource represented by the URL.
+  
+Port	3000	The port specifies the numbered network port used to connect to the domain server. Lower number ports are reserved for common internet protocols, higher number ports can be used for any purpose. The default port is 80 if the scheme is HTTP, or 443 if the scheme is HTTPS.
+  
+Path	/school/byu/user/8014	The path to the resource on the domain. The resource does not have to physically be located on the file system with this path. It can be a logical path representing endpoint parameters, a database table, or an object schema.
+  
+Parameters	filter=names&highlight=intro,summary	The parameters represent a list of key value pairs. Usually it provides additional qualifiers on the resource represented by the path. This might be a filter on the returned resource or how to highlight the resource. The parameters are also sometimes called the query string.
+  
+Anchor	summary	The anchor usually represents an sub-location in the resource. For HTML pages this represents a request for the browser to automatically scroll to the element with an ID that matches the anchor. The anchor is also sometimes called the hash, or fragment ID.
+  
+Ports are part of the web. Ports from 1024 to 49151 are used for external requests. ports 0 to 1023 represent standard protocals. Higher than that are used for dynamic connections.
+ When we opened up our web server we opened up port 22s o we could open up a remote console using ssh. We then used ports 80 and 443 but it automatically changes it to 443 so it can be secure.
+  
+  ## HTTP
+  Web browser and web server communicate by sending requests and responses that is how the web communicates. 
+  
+  Doing this:
+  curl -v -s http://info.cern.ch/hypertext/WWW/Helping.html
+  would look like this in HTTP:
+  GET /hypertext/WWW/Helping.html HTTP/1.1
+Host: info.cern.ch
+Accept: text/html
+  
+  Here is the general format of a request:
+  <verb> <url path, parameters, anchor> <version>
+[<header key: value>]*
+[
+
+  <body>
+]
+    
+    Here is what the response would look like for that request:
+    HTTP/1.1 200 OK
+Date: Tue, 06 Dec 2022 21:54:42 GMT
+Server: Apache
+Last-Modified: Thu, 29 Oct 1992 11:15:20 GMT
+ETag: "5f0-28f29422b8200"
+Accept-Ranges: bytes
+Content-Length: 1520
+Connection: close
+Content-Type: text/html
+
+<TITLE>Helping -- /WWW</TITLE>
+<NEXTID 7>
+<H1>How can I help?</H1>There are lots of ways you can help if you are interested in seeing
+the <A NAME=4 HREF=TheProject.html>web</A> grow and be even more useful...
+  
+  Here is the general syntax of an http response:
+  <version> <status code> <status string>
+[<header key: value>]*
+[
+
+  <body>
+]
+    
+    
+These are the verbs and these are super important for me to know!!!!!!!
+    
+    GET	Get the requested resource. This can represent a request to get a single resource or a resource representing a list of resources.
+    
+POST	Create a new resource. The body of the request contains the resource. The response should include a unique ID of the newly created resource.
+    
+PUT	Update a resource. Either the URL path, HTTP header, or body must contain the unique ID of the resource being updated. The body of the request should contain the updated resource. The body of the response may contain the resulting updated resource.
+    
+DELETE	Delete a resource. Either the URL path or HTTP header must contain the unique ID of the resource to delete.
+    
+OPTIONS	Get metadata about a resource. Usually only HTTP headers are returned. The resource itself is not returned.
+    
+It is also super important that I know the status codes and I use them so the client can interpret the response correctly:
+    
+    They're broken up into 5 blocks
+    
+    1xx - Informational.
+    
+2xx - Success.
+    
+3xx - Redirect to some other location, or that the previously cached resource is still valid.
+    
+4xx - Client errors. The request is invalid.
+    
+5xx - Server errors. The request cannot be satisfied due to an error on the server.
+    
+ Some common examples would be:
+    
+    100	Continue	The service is working on the request
+    
+200	Success	The requested resource was found and returned as appropriate.
+    
+201	Created	The request was successful and a new resource was created.
+
+204	No Content	The request was successful but no resource is returned.
+
+    304	Not Modified	The cached version of the resource is still valid.
+    
+    307	Permanent redirect	The resource is no longer at the requested location. The new location is specified in the response location header.
+    
+308	Temporary redirect	The resource is temporarily located at a different location. The temporary location is specified in the response location header.
+    
+400	Bad request	The request was malformed or invalid.
+    
+401	Unauthorized	The request did not provide a valid authentication token.
+    
+403	Forbidden	The provided authentication token is not authorized for the resource.
+    
+404	Not found	An unknown resource was requested.
+    
+408	Request timeout	The request takes too long.
+    
+409	Conflict	The provided resource represents an out of date version of the resource.
+    
+418	I'm a teapot	The service refuses to brew coffee in a teapot.
+    
+429	Too many requests	The client is making too many requests in too short of a time period.
+    
+500	Internal server error	The server failed to properly process the request.
+    
+503	Service unavailable	The server is temporarily down. The client should try again with an exponential back off.
+    
+    
+ HTTP headers are also useful in helping us to understand the metadata about a request and a response:
+    
+    Authorization	Bearer bGciOiJIUzI1NiIsI	A token that authorized the user making the request.
+    
+Accept	image/*	What content format the client accepts. This may include wildcards.
+    
+Content-Type	text/html; charset=utf-8	The format of the response content. These are described using standard MIME types.
+    
+Cookie	SessionID=39s8cgj34; csrftoken=9dck2	Key value pairs that are generated by the server and stored on the client.
+    
+Host	info.cern.ch	The domain name of the server. This is required in all requests.
+    
+Origin	cs260.click	Identifies the origin that caused the request. A host may only allow requests from specific origins.
+    
+Access-Control-Allow-Origin	https://cs260.click	Server response of what origins can make a request. This may include a wildcard.
+    
+Content-Length	368	The number of bytes contained in the response.
+    
+Cache-Control	public, max-age=604800	Tells the client how it can cache the response.
+    
+User-Agent	Mozilla/5.0 (Macintosh)	The client application making the request.
+    
+    
+ Cookies are how you track client
+    
+   Fetch
+    fetch uses a promise and requests info from url
+    fetch('https://api.quotable.io/random')
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
+    
+    
