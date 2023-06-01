@@ -18,3 +18,8 @@ app.use('/api', apiRouter);
 app.use((req, res) => {
     res.sendFile('index.html', { root: 'public'});
 });
+
+//starts the server and listens for any requests
+app.listen(port, () => {
+    console.log('Listening on port ${port}');
+});
