@@ -68,3 +68,13 @@ For this deliverable I made my application functional to track and display a use
 - **database** - Displays the different games that are going on on the map. This is currently saved in local storage but will later use a databse.
 - **WebSocket** - I used the map function that allows markers to be placed on the map to simulate the user creating a game.
 - **application logic** - when the user clicks on different games in the map it allows the user to add themselves to the game that they have clicked on. 
+
+## Service deliverable
+
+For this deliverable I created an HTTP service to host my frontend and provide backend endpoints.
+
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - I didn't have time to implement this. 😔
+- **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for voting.
+- **Frontend calls service endpoints** - I did this use the fetch function.
