@@ -641,6 +641,19 @@ Was created and allows for javascript to be run on the server side rather than j
 7 Run your code with node index.js
 
 
-### Web Service Creation
+### Express
+
+Express helps out with the following
+
+1Routing requests for service endpoints
+
+2Manipulating HTTP requests with JSON body content
+
+3Generating HTTP responses
+
+4Using middleware to add functionality
+
+
+
 
 
