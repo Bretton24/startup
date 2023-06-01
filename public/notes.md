@@ -597,3 +597,50 @@ User-Agent	Mozilla/5.0 (Macintosh)	The client application making the request.
   });
     
     
+## Service
+
+A web service is usually divided up into multiple service endpoints.
+
+Grammatical - everything in HTTP is a resource or object that can be used
+
+Readable - make it so your endpoints make sense
+
+Discoverable - make it so the endpoint is easy to read
+
+Compatible - make it so things don't break when you add new clients
+
+Simple - keep your endpoints focused on doing one thing
+
+Documented - It makes it way easier if you plan your endpoints from the get go.
+
+
+
+### RPC
+
+RPC's are a simplified way of interacting with other code across the network. It makes it so its like calling a function like its a local function call.
+
+### Rest
+
+Another way to expose endpoints 
+
+### GraphQL
+
+Focused on manipulating data. this was created so that you wouldn't have to make as many RPC and Rest calls. Graphql allows the user to filter the things out they don't want and keep the things they want in a query.
+
+
+### Node.js
+
+Was created and allows for javascript to be run on the server side rather than just frontend. 
+
+1 Create your project directory
+2 Initialize it for use with NPM by running npm init -y
+3 Make sure .gitignore file contains node-modules
+4 Install any desired packages with npm install <package name here>
+5 Add require('<package name here>') to your application's JavaScript
+6 Use the code the package provides in your JavaScript
+7 Run your code with node index.js
+
+
+### Web Service Creation
+
+
