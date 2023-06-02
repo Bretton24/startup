@@ -83,6 +83,10 @@ header {
     margin-top: 70px;
     box-shadow: 0 0 20px 5px rgb(69, 69, 69);
   }
+  #controls{
+    display: flex;
+    margin-left: 150px;
+  }
   .highlightlink:hover{
     font-weight: bold;
   }

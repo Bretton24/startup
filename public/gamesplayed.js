@@ -1,20 +1,15 @@
 async function loadScores() {
-  let players = [];
   try {
-    // Get the scores for the most recent game
-    const response = await fetch('/api/players');
-    players = await response.json();
-
-    //Save the scores in case we go offline in the future
-    localStorage.setItem('players', JSON.stringify(players));
-  } catch {
-    // if there was an error just use the last saved players
     const playersText = localStorage.getItem('players');
     if (playersText) {
-      players = JSON.parse(playersText);
+      const players = JSON.parse(playersText);
+      displayScores(players);
+    } else {
+      console.log('No player data found in local storage');
     }
+  } catch (error) {
+    console.error('Error loading players:', error);
   }
-  displayScores(players);
 }
 
   function displayScores(players) {
@@ -49,8 +44,6 @@ async function loadScores() {
   }
     
 
-  const { json } = require("express");
-
   function displayQuote(data) {
     fetch('https://api.quotable.io/random')
       .then((response) => response.json())
@@ -72,5 +65,5 @@ async function loadScores() {
 
 
   displayQuote();
-  displayScores();
+ loadScores();
   

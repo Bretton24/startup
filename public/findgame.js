@@ -1,6 +1,10 @@
+
+//gets userName from localstorage and outputs it page
 const storedUsername = localStorage.getItem("userName");
 const userNameElement = document.getElementById("us");
 userNameElement.innerText = storedUsername;
+
+//player class
 class Player {
   constructor(name, skill, wins, losses, lastGame) {
     this.name = name;
@@ -11,10 +15,12 @@ class Player {
   }
 }
 
+//random number generator for other methods
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+//method that will return a random name for players
 function generateRandomName() {
   const names = [ "John Smith",
   "Michael Jones",
@@ -71,24 +77,28 @@ function generateRandomName() {
   return names[randomIndex];
 }
 
+//randomly generates between 3 skills
 function generateRandomSkill() {
   const skillLevel = ["Professional", "Amateur", "Beginner"];
   const randomIndex = Math.floor(Math.random() * skillLevel.length);
   return skillLevel[randomIndex];
 }
 
+//generates a random number of wins
 function generateRandomWins() {
   const minWins = 0;
   const maxWins = 100;
   return Math.floor(Math.random() * (maxWins - minWins + 1)) + minWins;
 }
 
+//generates a random number of losses
 function generateRandomLosses() {
   const minWins = 0;
   const maxWins = 100;
   return Math.floor(Math.random() * (maxWins - minWins + 1)) + minWins;
 }
 
+//generates a random date for last date played for player
 function generateRandomDate() {
   const currentDate = new Date(); // Get the current date
   const currentYear = currentDate.getFullYear(); // Get the current year
@@ -119,17 +129,40 @@ function generateRandomDate() {
   return formattedDate;
 }
 
+
+// Game class
 class Game {
   constructor() {
     this.players = [];
   }
 
+  static createGame() {
+    const game = new Game();
+
+    for (let i = 0; i < getRandomNumber(3, 10); i++) {
+      const player = new Player(
+        generateRandomName(),
+        generateRandomSkill(),
+        generateRandomWins(),
+        generateRandomLosses(),
+        generateRandomDate()
+      );
+      game.addPlayer(player);
+      
+    }
+    game.savePlayers();
+
+    return game;
+  }
+
+  //function that adds a Player class to a game
   addPlayer(player) {
     this.players.push(player);
     console.log(`${player.name} has joined the game.`);
     this.printPlayersTable();
   }
 
+  //function that will remove a player from a game
   removePlayer(player) {
      const index = this.players.indexOf(player);
     if (index !== -1) {
@@ -138,16 +171,21 @@ class Game {
     }
   }
 
+  //function that will reset a game
   reset() {
     this.players = [];
     this.isOver = false;
     console.log("The game has been reset.");
   }
 
+  // function that prints the players of a current game to a table on the page
   printPlayersTable() {
     const table = document.getElementById("game");
 
+    //makes sure current game is empty when started
     table.innerHTML = "";
+
+    //creates header row
     const headers = ["Player Name", "Skill", "Wins", "Losses", "Last Game"];
     const headerRow = document.createElement("tr");
     headers.forEach((headerText) => {
@@ -157,6 +195,7 @@ class Game {
     });
     table.appendChild(headerRow);
 
+    //iterates through the players of that class and 
     this.players.forEach((player) => {
       const playerRow = document.createElement("tr");
       const playerData = [player.name, player.skill, player.wins, player.losses, player.lastGame];
@@ -169,19 +208,14 @@ class Game {
     });
   }
 
-  async savePlayers(players){
-    const game = {players};
-      const response = await fetch('/api/score', {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify(game),
-      });
-      const allPlayers = await response.json();
-      localStorage.setItem('players', JSON.stringify(allPlayers));
+  //function that saves players to local storage
+  savePlayers() {
+    const allPlayers = this.players;
+        localStorage.setItem('players', allPlayers);
   }
 }
 
-
+//function allows the user to join a game
 function joinGame() {
   if (currentGame) {
     const storedUsername = localStorage.getItem("userName");
@@ -199,6 +233,7 @@ function joinGame() {
         );
         currentGame.addPlayer(player);
         currentGame.printPlayersTable();
+        currentGame.savePlayers(currentGame.players);
       } else {
         alert("You are already added to the game.");
       }
@@ -222,60 +257,66 @@ let response;
 let currentGame;
 let games = [];
 
-markers = [];
 
+//initializes the map
 async function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
+    //instantiates a google map and then adds it to the map id
+  map = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: { lat: 40.233845, lng:-111.658531 }
     });
+    
+    //instantiates map geocoder allowing for conversion of address to coordinates
     geocoder = new google.maps.Geocoder();   
 
+    //creates text for the input line
     const inputText = document.createElement("input");
-
     inputText.placeholder = "Enter only full addresses";
 
+    //submit button is created in input as well
     const submitButton = document.createElement("input");
-
     submitButton.type = "button";
     submitButton.value = "Add Game";
     submitButton.classList.add("button", "button-primary");
 
-   
-
-
+    //creates a clear button for the map
     const clearButton = document.createElement("input");
-
     clearButton.type = "button";
     clearButton.value = "Clear";
     clearButton.classList.add("button", "button-primary");
+
+    //this allows the user to type their address in input box
     response = document.createElement("pre");
     response.id = "response";
     response.innerText = "";
     responseDiv = document.createElement("div");
     responseDiv.id = "response-container";
     responseDiv.appendChild(response);
-
+    
+    //creates a container for all of the controls
     const controlsContainer = document.getElementById("controls");
     controlsContainer.appendChild(inputText);
     controlsContainer.appendChild(submitButton);
     controlsContainer.appendChild(clearButton);
-  
-    map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
-    
 
+    //listener for the exact location on the map that is clicked
     map.addListener("click", (e) => {
     geocode({ location: e.latLng });
     });
+
+    //event listener for when the submit button is clicked
     submitButton.addEventListener("click", () =>
     geocode({ address: inputText.value })
     );
+
+    //event listener for when the clear button is pushed
     clearButton.addEventListener("click", () => {
     clear();
     });
     clear();
     }
 
+    //clear function that clears all the markers from the map
     function clear() {
         markers.forEach((marker) => {
           marker.setMap(null);
@@ -283,46 +324,53 @@ async function initMap() {
         markers = [];
     }
 
-    
-
+    //geocode function that helps change address to coordinates
     function geocode(request) {
+
+      //initializes a game
+      const game = Game.createGame();
+
+      //joinButton is instantiated so when clicked user will be added to the current game
       const joinButton = document.getElementById('join');
+
+      //geocoder is a reference to google library
         geocoder
+        //.geocode is a request to google maps library
           .geocode(request)
           .then((result) => {
             const { results } = result;
       
+            //set center method sets the result of the pinpointed mark to whatever was just added or clicked
             map.setCenter(results[0].geometry.location);
 
+            // marker creates a marker on the map
             const marker = new google.maps.Marker({
               position: results[0].geometry.location,
               map,
             });
-            const game = new Game();
-            games.push(game);
-            for (let i = 0; i < getRandomNumber(3,10); i++) {
-              const player = new Player(generateRandomName(), generateRandomSkill(), generateRandomWins(),generateRandomLosses(),generateRandomDate());
-              game.addPlayer(player);
-            }
 
+            //at each marker a game is saved & added to games array
             marker.game = game;
-
-            markers.push(marker);
-
+            markers.push(marker.game);
+            games.push(game);
+            
+            //listener that displays curent game when marker gets clicked
             marker.addListener("click", function() {
               currentGame = marker.game;
               currentGame.printPlayersTable();
             })
             
-         joinButton.addEventListener("click", joinGame);
-
-         game.savePlayers(game.players);
+            //join function called when join button clicked
+            joinButton.addEventListener("click", joinGame);
+            
 
             return results;
+           
           })
           .catch((e) => {
             alert("Geocode was not successful for the following reason: " + e);
           });
+          
       }
 
       window.initMap = initMap;

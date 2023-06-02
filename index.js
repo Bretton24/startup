@@ -16,14 +16,9 @@ app.use('/api', apiRouter);
 
 // GetPlayers
 apiRouter.get('/players', (req, res) => {
+    players = req.body;
     res.send(players);
 })
-
-// SubmitScore
-apiRouter.post('/score', (req, res) => {
-    players = updatePlayers(req.body, players);
-    res.send(players);
-  });
 
 // Return the application's default page if the path is unknown
 app.use((req, res) => {
@@ -34,28 +29,3 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
-
-
-// updateScores considers a new score for inclusion in the high scores.
-// The high scores are saved in memory and disappear whenever the service is restarted.
-let players = [];
-function updateScores(newScore, scores) {
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score > prevScore.score) {
-      scores.splice(i, 0, newScore);
-      found = true;
-      break;
-    }
-  }
-
-  if (!found) {
-    scores.push(newScore);
-  }
-
-  if (scores.length > 10) {
-    scores.length = 10;
-  }
-
-  return scores;
-}
