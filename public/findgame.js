@@ -9,18 +9,6 @@ class Player {
     this.losses = losses;
     this.lastGame = lastGame;
   }
-
-  increaseScore(points) {
-    this.score += points;
-  }
-
-  decreaseScore(points) {
-    if (this.score >= points) {
-      this.score -= points;
-    } else {
-      console.log("Score cannot be decreased below zero.");
-    }
-  }
 }
 
 const getRandomNumber = (min, max) => {
@@ -179,10 +167,21 @@ class Game {
       });
       table.appendChild(playerRow);
     });
-    
+  }
 
+  async savePlayers(players){
+    const game = {players};
+      const response = await fetch('/api/score', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(game),
+      });
+      const allPlayers = await response.json();
+      localStorage.setItem('players', JSON.stringify(allPlayers));
   }
 }
+
+
 function joinGame() {
   if (currentGame) {
     const storedUsername = localStorage.getItem("userName");
@@ -210,6 +209,9 @@ function joinGame() {
     alert("Please select a game before joining.");
   }
 };
+
+
+  
 
 // Initialize and add the map
 let map;
@@ -314,7 +316,7 @@ async function initMap() {
             
          joinButton.addEventListener("click", joinGame);
 
-         localStorage.setItem("players", JSON.stringify(game.players));
+         game.savePlayers(game.players);
 
             return results;
           })
