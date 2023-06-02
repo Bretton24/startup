@@ -20,6 +20,10 @@ apiRouter.get('/players', (req, res) => {
     res.send(players);
 })
 
+apiRouter.post('/players', (req, res) => {
+    
+})
+
 // Return the application's default page if the path is unknown
 app.use((req, res) => {
     res.sendFile('index.html', { root: 'public'});

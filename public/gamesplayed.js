@@ -1,15 +1,7 @@
 async function loadScores() {
-  try {
-    const playersText = localStorage.getItem('players');
-    if (playersText) {
-      const players = JSON.parse(playersText);
-      displayScores(players);
-    } else {
-      console.log('No player data found in local storage');
-    }
-  } catch (error) {
-    console.error('Error loading players:', error);
-  }
+  const jsonString = localStorage.getItem('players');
+  const players = JSON.parse(jsonString);
+  displayScores(players);
 }
 
   function displayScores(players) {

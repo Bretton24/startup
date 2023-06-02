@@ -134,25 +134,7 @@ function generateRandomDate() {
 class Game {
   constructor() {
     this.players = [];
-  }
-
-  static createGame() {
-    const game = new Game();
-
-    for (let i = 0; i < getRandomNumber(3, 10); i++) {
-      const player = new Player(
-        generateRandomName(),
-        generateRandomSkill(),
-        generateRandomWins(),
-        generateRandomLosses(),
-        generateRandomDate()
-      );
-      game.addPlayer(player);
-      
-    }
-    game.savePlayers();
-
-    return game;
+    this.allPlayers = [];
   }
 
   //function that adds a Player class to a game
@@ -208,11 +190,6 @@ class Game {
     });
   }
 
-  //function that saves players to local storage
-  savePlayers() {
-    const allPlayers = this.players;
-        localStorage.setItem('players', allPlayers);
-  }
 }
 
 //function allows the user to join a game
@@ -256,6 +233,7 @@ let responseDiv;
 let response;
 let currentGame;
 let games = [];
+const allPlayers = [];
 
 
 //initializes the map
@@ -327,8 +305,6 @@ async function initMap() {
     //geocode function that helps change address to coordinates
     function geocode(request) {
 
-      //initializes a game
-      const game = Game.createGame();
 
       //joinButton is instantiated so when clicked user will be added to the current game
       const joinButton = document.getElementById('join');
@@ -348,6 +324,25 @@ async function initMap() {
               position: results[0].geometry.location,
               map,
             });
+
+            
+            //initializes a game
+            const game = new Game();
+            for (let i = 0; i < getRandomNumber(3, 10); i++) {
+              const player = new Player(
+                generateRandomName(),
+                generateRandomSkill(),
+                generateRandomWins(),
+                generateRandomLosses(),
+                generateRandomDate()
+              );
+              game.addPlayer(player);
+              allPlayers.push(player);
+              const a = JSON.stringify(allPlayers);
+              localStorage.setItem('players',a);
+            }
+            //const gameData = JSON.stringify(game);
+            
 
             //at each marker a game is saved & added to games array
             marker.game = game;
@@ -372,6 +367,8 @@ async function initMap() {
           });
           
       }
+
+      
 
       window.initMap = initMap;
   
