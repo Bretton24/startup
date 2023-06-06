@@ -16,14 +16,15 @@ const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
 // GetPlayers
-apiRouter.get('/players', (req, res) => {
-    players = req.body;
+apiRouter.get('/players', async (req, res) => {
+    players =  await DB.getHighestWins();
     res.send(players);
 })
 
 //Post players in alphabetical order
-apiRouter.post('/players', (req, res) => {
-    players = sortPlayersAlphabetically(req.body);
+apiRouter.post('/players', async (req, res) => {
+    DB.addPlayer(req.body);
+    players = await DB.getHighestWins();
     res.send(players);
 })
 
