@@ -654,6 +654,35 @@ Express helps out with the following
 4Using middleware to add functionality
 
 
+### Storage Services
 
+Don't store information on the server. Think of the server as temporary.
 
+AWS S3 is a really good option for storing things. 
 
+MongoDB is a lot better than SQLDatabases because it effectively is a bunch of JSON objects that are easily callable through other means. 
+
+It uses something called a collection which is a large array of javascript objects each with a unique ID
+
+It looks like this 
+
+[
+  {
+    _id: '62300f5316f7f58839c811de',
+    name: 'Lovely Loft',
+    summary: 'A charming loft in Paris',
+    beds: 1,
+    last_review: {
+      $date: '2022-03-15T04:06:17.766Z',
+    },
+    price: 3000,
+  },
+  {
+    _id: '623010b97f1fed0a2df311f8',
+    name: 'Infinite Views',
+    summary: 'Modern home with infinite views from the infinity pool',
+    property_type: 'House',
+    beds: 5,
+    price: 250,
+  },
+];
