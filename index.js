@@ -20,8 +20,10 @@ apiRouter.get('/players', (req, res) => {
     res.send(players);
 })
 
+//Post players in alphabetical order
 apiRouter.post('/players', (req, res) => {
-    
+    players = sortPlayersAlphabetically(req.body);
+    res.send(players);
 })
 
 // Return the application's default page if the path is unknown
@@ -33,3 +35,15 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+
+function sortPlayersAlphabetically(players) {
+    const sortedPlayers = players.slice().sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    });
+    return sortedPlayers;
+  }

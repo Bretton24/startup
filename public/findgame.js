@@ -15,6 +15,8 @@ class Player {
   }
 }
 
+
+
 //random number generator for other methods
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -135,6 +137,10 @@ class Game {
   constructor() {
     this.players = [];
     this.allPlayers = [];
+  }
+
+  playerNames() {
+    return this.players.map(player => player.name);
   }
 
   //function that adds a Player class to a game
@@ -303,7 +309,7 @@ async function initMap() {
     }
 
     //geocode function that helps change address to coordinates
-    function geocode(request) {
+   async function geocode(request) {
 
 
       //joinButton is instantiated so when clicked user will be added to the current game
@@ -336,12 +342,39 @@ async function initMap() {
                 generateRandomLosses(),
                 generateRandomDate()
               );
+              
               game.addPlayer(player);
               allPlayers.push(player);
-              const a = JSON.stringify(allPlayers);
-              localStorage.setItem('players',a);
             }
-            //const gameData = JSON.stringify(game);
+              try {
+                const response = fetch('/api/players', {
+                  method: 'POST',
+                  headers: {'content-type': 'application/json'},
+                  body: JSON.stringify(allPlayers),
+                })
+                .then(response => response.json())
+                .then(allPlayers => {
+                  const array = JSON.stringify(allPlayers);
+                  localStorage.setItem('players', array);
+                }) 
+              } catch {
+                // if there was an error just alphabetize the array locally
+                alphabetize(allPlayers);
+              }
+
+              function alphabetize(allPlayers) {
+                const sortedPlayers = allPlayers.slice().sort((a, b) => {
+                  const nameA = a.name.toLowerCase();
+                  const nameB = b.name.toLowerCase();
+                  if (nameA < nameB) return -1;
+                  if (nameA > nameB) return 1;
+                  return 0;
+                });
+                localStorage.setItem('players',JSON.stringify(sortedPlayers));
+              }
+              
+              
+            
             
 
             //at each marker a game is saved & added to games array
