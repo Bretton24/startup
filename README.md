@@ -85,5 +85,5 @@ For this deliverable I created an HTTP service to host my frontend and provide b
 For this deliverable I stored and retrieved data from MongoDB.
 
 - **MongoDB Atlas database created** - done!
-- **Endpoints for data** - My endpoints now send players data to Mongo and then are displayed by highest number of wins.
+- **Endpoints for data** - My endpoints now send players data to Mongo and query players by highest number of wins.
 - **Stores data in MongoDB** - done!
