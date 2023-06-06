@@ -14,3 +14,8 @@ const playerCollection = db.collection('players');
     console.log(`Unable to connect to database with ${url} because ${ex.message}`);
     process.exit(1);
 });
+
+async function addPlayer(player) {
+    const result = await playerCollection.insertOne(player);
+    return result;
+}
