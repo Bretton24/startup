@@ -19,3 +19,15 @@ async function addPlayer(player) {
     const result = await playerCollection.insertOne(player);
     return result;
 }
+
+function getHighestWins() {
+    const query = { player: { $gt: 0, $lt: 100} };
+    const options = {
+        sort: { player: -1},
+        limit: 10,
+    };
+    const cursor = playerCollection.find(query, options);
+    return cursor.toArray();
+}
+
+module.exports = { addPlayer, getHighestWins };
