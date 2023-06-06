@@ -15,19 +15,19 @@ const playerCollection = db.collection('players');
     process.exit(1);
 });
 
-async function addPlayer(player) {
-    const result = await playerCollection.insertOne(player);
+async function addPlayers(allPlayers) {
+    const result = await playerCollection.insertMany(allPlayers);
     return result;
 }
 
 function getHighestWins() {
-    const query = { player: { $gt: 0, $lt: 100} };
+    const query = { wins : { $gt: 0, $lt: 900 } };
     const options = {
-        sort: { player: -1},
+        sort: { wins: -1},
         limit: 10,
     };
     const cursor = playerCollection.find(query, options);
     return cursor.toArray();
 }
 
-module.exports = { addPlayer, getHighestWins };
+module.exports = { addPlayers, getHighestWins };

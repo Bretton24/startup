@@ -359,18 +359,15 @@ async function initMap() {
                 }) 
               } catch {
                 // if there was an error just alphabetize the array locally
-                alphabetize(allPlayers);
+                getHighestWins(allPlayers);
               }
 
-              function alphabetize(allPlayers) {
+              function getHighestWins(allPlayers) {
                 const sortedPlayers = allPlayers.slice().sort((a, b) => {
-                  const nameA = a.name.toLowerCase();
-                  const nameB = b.name.toLowerCase();
-                  if (nameA < nameB) return -1;
-                  if (nameA > nameB) return 1;
-                  return 0;
+                  return b.wins - a.wins;
                 });
-                localStorage.setItem('players',JSON.stringify(sortedPlayers));
+              
+                localStorage.setItem('players', JSON.stringify(sortedPlayers));
               }
               
               
