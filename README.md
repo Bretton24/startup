@@ -87,3 +87,13 @@ For this deliverable I stored and retrieved data from MongoDB.
 - **MongoDB Atlas database created** - done!
 - **Endpoints for data** - My endpoints now send players data to Mongo and query players by highest number of wins.
 - **Stores data in MongoDB** - done!
+
+
+## Login deliverable
+
+For this deliverable I added user registration and authentication.
+
+- **User registration** - Creates a new account in the database.
+- **existing user** - Verifies the user's name and password from data stored in the database
+- **Use MongoDB to store credentials** - done!
+- **Restricts functionality** - You cannot access the map until you have logged in.
