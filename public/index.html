@@ -38,9 +38,12 @@
       <div>
       <h1>Welcome</h1>
       <p>Login to find a local game</p>
+      <!-- Displayed when needing authentication -->
       <div>
-        <input type="text" id="name" placeholder="Your username here" />
-        <button class="btn btn-primary" onclick="login()">Login</button>
+        <input type="text" id="name" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button class="btn btn-primary" onclick="loginUser()">Login</button>
+        <button class="btn btn-primary" onclick="createUser()">Create</button>
       </div>
     </div>
     </main>
