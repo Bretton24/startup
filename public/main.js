@@ -20,7 +20,7 @@ async function createUser() {
 
 async function loginOrCreate(endpoint) {
   const userName = document.querySelector('#userName')?.value;
-  const password = document.querySelector('#userPassword')?.value;
+  const password = document.querySelector('#password')?.value;
   const response = await fetch(endpoint, {
     method: 'post',
     body: JSON.stringify({ email: userName, password: password }),
@@ -31,7 +31,7 @@ async function loginOrCreate(endpoint) {
 
   if (response.ok) {
     localStorage.setItem('userName', userName);
-    window.location.href = 'play.html';
+    window.location.href = 'findgame.html';
   } else {
     const body = await response.json();
     const modalEl = document.querySelector('#msgModal');
@@ -42,7 +42,7 @@ async function loginOrCreate(endpoint) {
 }
 
 function play() {
-  window.location.href = 'play.html';
+  window.location.href = 'findgame.html';
 }
 
 function logout() {
@@ -53,7 +53,6 @@ function logout() {
 }
 
 async function getUser(email) {
-  let scores = [];
   // See if we have a user with the given email.
   const response = await fetch(`/api/user/${email}`);
   if (response.status === 200) {
