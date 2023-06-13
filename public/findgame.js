@@ -429,6 +429,15 @@ async function initMap() {
           `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
       }
       
+      broadcastEvent(from, type, value) {
+        const event = {
+          from: from,
+          type: type,
+          value: value,
+        };
+        this.socket.send(JSON.stringify(event));
+      }
+      
       
 
 
