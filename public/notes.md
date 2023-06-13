@@ -699,3 +699,8 @@ Remembering user authentication a lot of times has to do with using cookies.
 When creating an authentication endpoint this usually requires two service endpoints. One to create an authentication credential & one to login. 
 
 There is also a getMe endpoint that returns informaton about the authenticated user. 
+
+
+
+
+
