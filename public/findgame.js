@@ -4,6 +4,12 @@ const storedUsername = localStorage.getItem("userName");
 const userNameElement = document.getElementById("us");
 userNameElement.innerText = storedUsername;
 
+
+// Event messages
+const GameEndEvent = 'gameEnd';
+const GameStartEvent = 'gameStart';
+
+
 //player class
 class Player {
   constructor(name, skill, wins, losses, lastGame) {
@@ -383,6 +389,8 @@ async function initMap() {
             marker.addListener("click", function() {
               currentGame = marker.game;
               currentGame.printPlayersTable();
+              // Let other players know a new game has started
+              this.broadcastEvent(this.playerNames(), GameStartEvent, {});
             })
             
             //join function called when join button clicked
@@ -398,23 +406,30 @@ async function initMap() {
           
       }
 
-      
       configureWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
         this.socket.onopen = (event) => {
-          this.displayMsg('system','game','connected');
+          this.displayMsg('system', 'game', 'connected');
         };
         this.socket.onclose = (event) => {
           this.displayMsg('system', 'game', 'disconnected');
         };
         this.socket.onmessage = async (event) => {
           const msg = JSON.parse(await event.data.text());
-          if (msg.type === GameStartEvent){
-            this.displayMsg('players', msg.from, `started a new game`)
+          if (msg.type === GameStartEvent) {
+            this.displayMsg('#us', msg.from, `started a new game`);
           }
-        }
+        };
       }
+
+      displayMsg(cls, from, msg) {
+        const chatText = document.querySelector('#player-messages');
+        chatText.innerHTML =
+          `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+      }
+      
+      
 
 
       window.initMap = initMap;
