@@ -19,6 +19,17 @@ input.addEventListener('keydown', (e) => {
   }
 });
 
+function sendMessage() {
+  const msgEl = document.querySelector('#new-msg');
+  const msg = msgEl.value;
+  if (!!msg) {
+    appendMsg('me', 'me', msg);
+    const name = document.querySelector('#us').value;
+    socket.send(`{"name":"${name}", "msg":"${msg}"}`);
+    msgEl.value = '';
+  }
+}
+
 //player class
 class Player {
   constructor(name, skill, wins, losses, lastGame) {
