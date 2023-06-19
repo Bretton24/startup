@@ -5,10 +5,6 @@ const userNameElement = document.getElementById("us");
 userNameElement.innerText = storedUsername;
 
 
-// Event messages
-const GameEndEvent = 'gameEnd';
-const GameStartEvent = 'gameStart';
-
 
 //player class
 class Player {
@@ -205,39 +201,6 @@ class Game {
     });
   }
 
-  configureWebSocket() {
-    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-    this.socket.onopen = (event) => {
-      this.displayMsg('system', 'game', 'connected');
-    };
-    this.socket.onclose = (event) => {
-      this.displayMsg('system', 'game', 'disconnected');
-    };
-    this.socket.onmessage = async (event) => {
-      const msg = JSON.parse(await event.data.text());
-      if (msg.type === GameStartEvent) {
-        this.displayMsg('#us', msg.from, `started a new game`);
-      }
-    };
-  }
-
-  displayMsg(cls, from, msg) {
-    const chatText = document.querySelector('#player-messages');
-    chatText.innerHTML =
-      `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
-  }
-  
-  broadcastEvent(from, type, value) {
-    const event = {
-      from: from,
-      type: type,
-      value: value,
-    };
-    this.socket.send(JSON.stringify(event));
-  }
-
-
 }
 
 //function allows the user to join a game
@@ -398,9 +361,8 @@ async function initMap() {
                 .then(response => response.json())
                 .then(allPlayers => {
                   const array = JSON.stringify(allPlayers);
-                  localStorage.setItem('players', array);this.configureWebSocket();
-                   // Let other players know a new game has started
-                  game.broadcastEvent(game.playerNames(), GameStartEvent, {});
+                  localStorage.setItem('players', array);
+                   
                 }) 
               } catch {
                 // if there was an error just alphabetize the array locally
