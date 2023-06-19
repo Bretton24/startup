@@ -5,6 +5,19 @@ const userNameElement = document.getElementById("us");
 userNameElement.innerText = storedUsername;
 
 
+//chat function that appends message
+function appendMsg(cls, from, msg) {
+  const chatText = document.querySelector('#player-messages');
+  chatText.innerHTML = `<div><span class="${cls}">${from}</span>: ${msg}</div>` + chatText.innerHTML;
+}
+
+// event listener that listens for new message
+const input = document.querySelector('#new-msg');
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+});
 
 //player class
 class Player {
