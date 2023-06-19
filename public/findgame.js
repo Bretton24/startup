@@ -43,9 +43,8 @@ socket.onclose = (event) => {
     const msgEl = document.querySelector('#new-msg');
     const msg = msgEl.value;
     if (!!msg) {
-      appendMsg('me', 'me', msg);
-      const name = document.querySelector('#us').value;
-      socket.send(`{"name":"${name}", "msg":"${msg}"}`);
+      appendMsg('me', storedUsername, msg);
+      socket.send(JSON.stringify({ name: storedUsername, msg: msg }));
       msgEl.value = '';
     }
   }
