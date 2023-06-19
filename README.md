@@ -100,9 +100,9 @@ For this deliverable I added user registration and authentication.
 
 ## WebSocket deliverable
 
-For this deliverable I enabled realtime reporting of votes from other users.
+For this deliverable I created a chat that allows players to message back and forth.
 
 - **Backend listens for WebSocket connection** - done!
 - **Frontend makes WebSocket connection** - done!
 - **Data sent over WebSocket connection** - done!
-- **WebSocket data displayed** - All user votes display in realtime
+- **WebSocket data displayed** - displays the messages that are sent between each user as well as usernames.
