@@ -42,11 +42,18 @@
        <h2> Current Player:
         <span id="us"></span></h2>
       <br>
-      <div id="player-messages"></div>
       <br>
       <div>
         <img class="img1" src="mark.jpg" alt="profile picture placeholder">
       </div>
+      <br>
+      <fieldset id="chat-controls" disabled>
+        <legend>Chat</legend>
+        <input id="new-msg" type="text" />
+        <button onclick="sendMessage()">Send</button>
+      </fieldset>
+      <div id="player-messages"></div>
+      <br>
       <br>
       <h4>Current Game</h4>
       <table>
@@ -74,6 +81,7 @@
     </div>
     <div id="controls"></div>
   </div>
+  <script src="../peerProxy.js"></script>
     </main>
     <footer class="players">
       <div class="container-fluid">
