@@ -143,7 +143,10 @@ class Game {
   constructor() {
     this.players = [];
     this.allPlayers = [];
+    
   }
+
+  
 
   playerNames() {
     return this.players.map(player => player.name);
@@ -201,6 +204,39 @@ class Game {
       table.appendChild(playerRow);
     });
   }
+
+  configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    this.socket.onopen = (event) => {
+      this.displayMsg('system', 'game', 'connected');
+    };
+    this.socket.onclose = (event) => {
+      this.displayMsg('system', 'game', 'disconnected');
+    };
+    this.socket.onmessage = async (event) => {
+      const msg = JSON.parse(await event.data.text());
+      if (msg.type === GameStartEvent) {
+        this.displayMsg('#us', msg.from, `started a new game`);
+      }
+    };
+  }
+
+  displayMsg(cls, from, msg) {
+    const chatText = document.querySelector('#player-messages');
+    chatText.innerHTML =
+      `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+  }
+  
+  broadcastEvent(from, type, value) {
+    const event = {
+      from: from,
+      type: type,
+      value: value,
+    };
+    this.socket.send(JSON.stringify(event));
+  }
+
 
 }
 
@@ -292,6 +328,7 @@ async function initMap() {
     //listener for the exact location on the map that is clicked
     map.addListener("click", (e) => {
     geocode({ location: e.latLng });
+   
     });
 
     //event listener for when the submit button is clicked
@@ -361,7 +398,9 @@ async function initMap() {
                 .then(response => response.json())
                 .then(allPlayers => {
                   const array = JSON.stringify(allPlayers);
-                  localStorage.setItem('players', array);
+                  localStorage.setItem('players', array);this.configureWebSocket();
+                   // Let other players know a new game has started
+                  game.broadcastEvent(game.playerNames(), GameStartEvent, {});
                 }) 
               } catch {
                 // if there was an error just alphabetize the array locally
@@ -389,8 +428,7 @@ async function initMap() {
             marker.addListener("click", function() {
               currentGame = marker.game;
               currentGame.printPlayersTable();
-              // Let other players know a new game has started
-              this.broadcastEvent(this.playerNames(), GameStartEvent, {});
+              
             })
             
             //join function called when join button clicked
@@ -406,37 +444,7 @@ async function initMap() {
           
       }
 
-      configureWebSocket() {
-        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
-        this.socket.onopen = (event) => {
-          this.displayMsg('system', 'game', 'connected');
-        };
-        this.socket.onclose = (event) => {
-          this.displayMsg('system', 'game', 'disconnected');
-        };
-        this.socket.onmessage = async (event) => {
-          const msg = JSON.parse(await event.data.text());
-          if (msg.type === GameStartEvent) {
-            this.displayMsg('#us', msg.from, `started a new game`);
-          }
-        };
-      }
-
-      displayMsg(cls, from, msg) {
-        const chatText = document.querySelector('#player-messages');
-        chatText.innerHTML =
-          `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
-      }
-      
-      broadcastEvent(from, type, value) {
-        const event = {
-          from: from,
-          type: type,
-          value: value,
-        };
-        this.socket.send(JSON.stringify(event));
-      }
+     
       
       
 

@@ -4,7 +4,8 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "mongodb": "^5.6.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "ws": "^8.13.0"
   },
   "name": "startup",
   "description": "Do you ever find it difficult to find people who share the same interest in sports that you do? This was the problem I faced when I came to college. So i developed an application that would allow you to connect with someone who shares your love of playing sports. This app allows you to create an account and then go to a map of your area to see who is playing a game and at what time. The benefit of this app is because there are so many users we can run ads and don't even have to charge the users to use the app. It's a win win for us and the users.",
