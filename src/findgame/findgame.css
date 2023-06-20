@@ -1,0 +1,105 @@
+.body{
+    display: flex;
+    flex-direction: column;
+    min-width: 375px;
+}
+header {
+    flex: 0 80px;
+  }
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  footer {
+    flex: 0 30px;
+  }
+
+  .bg-whitish{
+    background-color: whitesmoke;
+  }
+  .bg-lightgray{
+    background-color: lightgray;
+  }
+  .font{
+    color: black;
+  }
+  table{
+    background-color: #eee;
+  }
+  td, th {
+  color: black;
+  text-align: center;
+  border: black solid thin;
+  padding: .5em;
+}
+
+  menu {
+    flex: 1;
+    display: flex;
+    /*  overwrite Bootstrap so the menu does not wrap */
+    flex-direction: row !important;
+    list-style: none;
+  }
+  .navbar-brand {
+    padding-left: 0.3em;
+    border-bottom: solid rgb(27, 25, 25) thin;
+  }
+  
+  menu .nav-item {
+    padding: 0 0.3em;
+  }
+  
+  footer a {
+    float: right;
+  }
+  .players{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+  }
+  .img1{
+    border-radius: 50%;
+    width: 11vw;
+    height: 12vw;
+    text-align: center;
+    max-width: 100%;
+  }
+  .container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .map{
+    display: flex;
+    width: 1500px; 
+    height: 80%;
+    min-width: 250px;
+    min-height: 75px;
+    margin-left: 150px;
+    margin-top: 70px;
+    box-shadow: 0 0 20px 5px rgb(69, 69, 69);
+  }
+  #controls{
+    display: flex;
+    margin-left: 150px;
+  }
+  .highlightlink:hover{
+    font-weight: bold;
+  }
+
+  @media (max-height: 600px) {
+    header {
+      display: none;
+    }
+    footer {
+      display: none;
+    }
+    main {
+      flex: 1 100vh;
+    }
+  }
+  
