@@ -1,0 +1,25 @@
+{
+  "devDependencies": {
+    "vite": "^4.3.9"
+  },
+  "name": "startup",
+  "description": "Do you ever find it difficult to find people who share the same interest in sports that you do? This was the problem I faced when I came to college. So i developed an application that would allow you to connect with someone who shares your love of playing sports. This app allows you to create an account and then go to a map of your area to see who is playing a game and at what time. The benefit of this app is because there are so many users we can run ads and don't even have to charge the users to use the app. It's a win win for us and the users.",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "esbuild": "^0.17.19",
+    "nanoid": "^3.3.6",
+    "picocolors": "^1.0.0",
+    "postcss": "^8.4.24",
+    "rollup": "^3.25.1",
+    "source-map-js": "^1.0.2"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
