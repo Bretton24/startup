@@ -27,7 +27,6 @@ export function Findgame() {
             <button type="submit" id="join" class="btn btn-primary">Join Game</button>
           </div>
           <div class="map" id="map"></div>
-          
         </div>
       </div>
     </main>

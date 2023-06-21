@@ -2,12 +2,12 @@ import React from 'react';
 import './gamesplayed.css';
 
 export function Gamesplayed() {
-  return (
-    <main className='container-fluid bg-lightgray text-center'>
-      <h1>Games Played</h1>
+    return(
+    <div>
+     <h1>Games Played</h1>
       <div id="quote"></div>
-      <table className="table table-warning table-striped-columns">
-        <thead className="table-dark font">
+      <table class="table table-warning table-striped-columns">
+        <thead class="table-dark font">
           <tr>
             <th>#</th>
             <th>Name</th>
@@ -20,6 +20,6 @@ export function Gamesplayed() {
         </tbody>
       </table>
       <img src="sports.jpg" alt="image of various sports"></img>
-    </main>
-  );
+    </div>
+    );
 }
